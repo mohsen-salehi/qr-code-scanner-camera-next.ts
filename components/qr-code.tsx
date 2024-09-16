@@ -7,7 +7,7 @@ const QrCodeScanner = () => {
 
   const handleScan = (data: string | null) => {
     if (data) {
-      setScanResult(data); // قرار دادن نتیجه در اینپوت
+      setScanResult(data);
     }
   };
 
@@ -16,20 +16,24 @@ const QrCodeScanner = () => {
   };
 
   return (
-    <div className="w-full flex flex-wrap items-center justify-center">
-      <QrReader
-        onResult={(result, error) => {
-          if (result) {
-            handleScan(result.getText());
-          }
-          if (error) {
-            handleError(error);
-          }
-        }}
-        constraints={{ facingMode: "environment" }} // به صورت پیش‌فرض دوربین پشت
-      />
+    <div className="scanner-container">
+      <div className="qr-reader-wrapper">
+        <QrReader
+          onResult={(result, error) => {
+            if (result) {
+              handleScan(result.getText());
+            }
+            if (error) {
+              handleError(error);
+            }
+          }}
+          constraints={{ facingMode: "environment" }}
+        />
+        <div className="scan-overlay" />
+      </div>
       <input
         type="text"
+        className="scan-result-input"
         value={scanResult || ""}
         readOnly
         placeholder="Scan result"
