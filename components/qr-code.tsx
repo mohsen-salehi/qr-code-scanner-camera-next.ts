@@ -11,7 +11,7 @@ const QrCodeScanner = () => {
     }
   };
 
-  const handleError = (err: any) => {
+  const handleError = (err: Error) => {
     console.error(err);
   };
 
@@ -27,7 +27,6 @@ const QrCodeScanner = () => {
           }
         }}
         constraints={{ facingMode: "environment" }} // به صورت پیش‌فرض دوربین پشت
-        style={{ width: "100%" }}
       />
       <input
         type="text"
